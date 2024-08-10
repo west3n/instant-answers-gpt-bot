@@ -16,7 +16,4 @@ OPENAI_MODEL = "gpt-4o-mini"
 OPENAI_ASSISTANT_INSTRUCTION = "You are a helpful assistant."
 
 # MongoDB
-MONGO_USER = os.getenv("MONGO_USER")
-MONGO_PASSWORD = os.getenv("MONGO_PASSWORD")
-# MONGO_STRING = f'mongodb://{MONGO_USER}:{MONGO_PASSWORD}@localhost:27017/admin'
 MONGO_STRING = "mongodb://mongo:27017/admin"
