@@ -17,8 +17,6 @@
 
 - BOT_TOKEN: Telegram API token. [How to grab it](https://core.telegram.org/bots/tutorial#obtain-your-bot-token)
 - OPENAI_API_KEY: OpenAI API Key. [How to grab it](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key)
-- MONGO_USER: Username for Mongo Database
-- MONGO_PASSWORD: Password for Mongo Database
 
 3. ### Build the Docker image and start the containers:
    ```bash
