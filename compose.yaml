@@ -1,0 +1,24 @@
+version: "3.11"
+
+services:
+  bot:
+    build:
+      context: .
+    restart: on-failure
+    volumes:
+      - .:/app
+    depends_on:
+      - mongo
+    command: ["python", "src/bot.py"]
+
+  mongo:
+    image: mongo:5.0
+    volumes:
+      - ./data:/data
+    ports:
+      - "27017:27017"
+    env_file:
+      - .env
+
+volumes:
+  mongo_data:

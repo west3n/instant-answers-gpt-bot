@@ -1,0 +1,5 @@
+aiogram==3.10.0
+beanie~=1.26.0
+chatgpt-md-converter==0.1.2
+openai==1.40.2
+python-dotenv~=1.0.1
