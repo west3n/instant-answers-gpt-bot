@@ -1,11 +1,10 @@
 from aiogram import types
 
-from chatgpt_md_converter import telegram_format
-
 from openai import AsyncOpenAI, AsyncAssistantEventHandler
 from openai.types.beta.threads import TextDelta, Text
 
 from src.utils import enums
+from src.utils.response_formatter import TelegramMarkdownConverter
 
 client: AsyncOpenAI = enums.OPENAI_ASYNC_CLIENT
 model = enums.OPENAI_MODEL
@@ -54,7 +53,7 @@ class AssistantStream(AsyncAssistantEventHandler):
             message = await self.message.answer(snapshot.value)
             self.message_id = message.message_id
         else:
-            if self.counter % 10 == 0:
+            if self.counter % 30 == 0:
                 await self.message.bot.edit_message_text(
                     chat_id=self.message.chat.id,
                     message_id=self.message_id,
@@ -67,10 +66,12 @@ class AssistantStream(AsyncAssistantEventHandler):
         :param text: completed text
         :return:
         """
+        formatter = TelegramMarkdownConverter(text.value)
+        response_text = formatter.convert()
         await self.message.bot.edit_message_text(
             chat_id=self.message.chat.id,
             message_id=self.message_id,
-            text=telegram_format(text.value),
+            text=response_text,
             parse_mode="HTML",
         )
 
